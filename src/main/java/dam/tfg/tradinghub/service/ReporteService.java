@@ -31,7 +31,7 @@ public class ReporteService extends BaseServiceImpl<Reporte, ReporteDTO> {
 
     @Override
     public ReporteDTO save(ReporteDTO dto) {
-        if (reporteRepository.existsByIdItemAndIdUsuarioReportante(dto.getIdItem(), dto.getIdUsuarioReportante())) {
+        if (dto.getId() == null && reporteRepository.existsByIdItemAndIdUsuarioReportante(dto.getIdItem(), dto.getIdUsuarioReportante())) {
             throw new EntityStorageException(String.format("Ya has reportado este %s anteriormente. Por favor, evite repetir reportes.",
                     dto.getTipoItem()));
         }
